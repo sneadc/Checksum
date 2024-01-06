@@ -1,0 +1,113 @@
+[tool.poetry]
+name = "checksum"
+version = "0.1.0"
+description = "fast shasum replacement"
+authors = ["Chris Snead <105823816+sneadc@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23"
+flake8 = "^6"
+isort = "^5"
+tox = "^4"
+ipykernel = "^6"
+pre-commit = ">=2.10"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7"
+ruff = ">=0"
+pytest-console-scripts = "^1.4.1"
+
+[tool.poetry.group.docs]
+optional = true
+
+[tool.poetry.group.docs.dependencies]
+mkdocs = "*"
+
+[tool.poetry.group.typing.dependencies]
+mypy = ">=1.6.0"
+
+[tool.poetry.scripts]
+checksum = "checksum:main"
+
+[build-system]
+requires = ["setuptools", "poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 80
+
+[tool.mypy]
+files = "src, tests"
+show_error_codes = true
+strict = true
+enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
+exclude = ["tests/fixtures"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--capture=sys"
+
+[tool.ruff]
+cache-dir = "~/.cache/ruff"
+extend-exclude = [
+    "docs/*",
+    # External to the project's coding standards
+    "tests/**/fixtures/*",
+]
+fix = true
+line-length = 80
+src = ["src"]
+
+[tool.ruff.lint]
+unfixable = [
+    "ERA", # do not autoremove commented out code
+]
+extend-select = [
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "ERA", # flake8-eradicate/eradicate
+    "I",   # isort
+    "N",   # pep8-naming
+    "PIE", # flake8-pie
+    "PGH", # pygrep
+    "RUF", # ruff checks
+    "SIM", # flake8-simplify
+    "TCH", # flake8-type-checking
+    "TID", # flake8-tidy-imports
+    "UP",  # pyupgrade
+]
+ignore = [
+    "B904",   # use 'raise ... from err'
+    "B905",   # use explicit 'strict=' parameter with 'zip()'
+    "N818",   #  Exception name should be named with an Error suffix
+]
+
+[tool.ruff.lint.flake8-tidy-imports]
+ban-relative-imports = "parents"
+
+[tool.ruff.lint.isort]
+case-sensitive = false
+force-single-line = false
+length-sort = true
+length-sort-straight = true
+lines-between-types = 1
+lines-after-imports = 2
+known-first-party = ["atlas"]
+required-imports = ["from __future__ import annotations"]
+
+[tool.ruff.per-file-ignores]
+"src/poetry/console/*" = [
+    "RUF012",
+] # Can't annotate properly until new version of Cleo
+
+[tool.poetry-git-version-plugin]
+make_alpha_version = true
+version_format = '{version}+{commit_hash}'
+alpha_version_format = '{version}a{distance}+{commit_hash}'
+ignore_errors = true
+ignore_public_pep440 = true
+ignore_pep440 = true
