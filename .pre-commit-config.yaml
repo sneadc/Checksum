@@ -1,0 +1,37 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: check-ast
+      - id: check-toml
+      - id: check-yaml
+
+  # Format python source code with black
+  - repo: https://github.com/psf/black-pre-commit-mirror
+    rev: 23.12.1
+    hooks:
+      - id: black
+        exclude: tests/([^/]*/)*fixtures/
+
+  - repo: https://github.com/pre-commit/pre-commit
+    rev: v3.6.0
+    hooks:
+      - id: validate_manifest
+
+  # Ruff linting
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.11
+    hooks:
+      - id: ruff
+
+  # Finds and correct spelling mistakes
+  - repo: https://github.com/crate-ci/typos
+    rev: v1.17.0
+    hooks:
+      - id: typos
