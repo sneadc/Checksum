@@ -45,27 +45,27 @@ Default. `SHA1`
 
 ```shell
 checksum *(.)
-721e9c281b1f0c22e06683cf895d7390b68d391f  README.md
-ee82aa809414e5f9563eb3e512396280071b4de0  checksum.ipynb
-8103c1bae9828dc2de155dde524717e8e3c5b4d7  pyproject.toml
+02a0f638674b70231739f47e3d12f2df036e85c0  README.md
+f693ee230951abb2badb96145d73de383f0b8eed  checksum.ipynb
+02dd284707f44919fba573dc9b4ef45f6b7253ac  pyproject.toml
 ```
 
 Using. `SHA256`
 
 ```shell
 checksum -a 256 *(.)
-9b81b3d3aeb7f4f40bbb4c384d9d384b724ccd520014e12243cdb1fa77d06941  README.md
-e63f71bd5f70cc82ddbcdd689f3a36e2870b70aa8c220bfb29bb3e53747cf36b  checksum.ipynb
-ede91749ca2c36bd27c0581189eee17967a85e7b60a7724db6be609dfa26f72a  pyproject.toml
+dfbb5cfdb419af3b53230ae3660bac0418d9da966cdb344375eb84696e3ec0b4  README.md
+2f81f485b7ef71ff2ac2d500ff82c0cfdd9571edf59cc24a3737bf932ef68dd2  checksum.ipynb
+c5b25a2068150ba97903c12e494d52dbc9c6c91b7ef697de7cc729f94d955290  pyproject.toml
 ```
 
 Using. `MD5`
 
 ```shell
 checksum -a md5 *(.)
-7a0254c0010f9889145fca9eeaa91778  README.md
-ba8b33fa13c22b11de6774adb614283d  checksum.ipynb
-bace454752bd3d1568660ea97a93fd35  pyproject.toml
+b625e2c5325dbf7fc796b19b12e127a9  README.md
+11c6df1ae02c19f090bfc3065c4c7677  checksum.ipynb
+eba1e80977af31df86da99b6a5b93633  pyproject.toml
 ```
 
 Comparison with GNU `sha256sum`:
